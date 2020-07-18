@@ -17,8 +17,6 @@ nextPage.addEventListener('click', ()=>{
             container.innerHTML = text;
             pageNumb = pageNumb + 1; // увелечение счетчика для страницы
             page = 'section' + pageNumb + '.html'; // изменение страницы
-            console.log(pageNumb);
-            console.log(page);
         });
 });
 
