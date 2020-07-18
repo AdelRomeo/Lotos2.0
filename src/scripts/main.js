@@ -1,5 +1,5 @@
 let container = document.querySelector('.main-container');
-let nextPage = document.querySelector('.next-page');
+let nextPage = document.querySelector('.next-page_btn');
 
 let pageNumb = 2; //счетчик для изменения страницы
 

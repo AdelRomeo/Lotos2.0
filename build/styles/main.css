@@ -1,3 +1,9 @@
-body{background:black}
+@font-face{font-family:"Roboto";src:url("../../fonts/Roboto/Roboto-Regular.ttf")}
+
+.main-footer{width:100%;display:flex;justify-content:space-between;padding-top:60px;padding-bottom:60px;color:black}.social{display:flex;justify-content:space-between}.social>li>a{margin-right:30px;color:black;font-size:18px}.next-page{display:flex;justify-content:space-between}.next-page_info{margin-right:10px;font-size:18px}.next-page_btn{width:40px;height:40px;background:#ff6000;border-radius:50%;margin-top:5px;position:relative}.next-page_btn::before{position:absolute;content:"";left:18px;top:18px;width:5px;height:5px;border-radius:50%;background:white}
+
+*{box-sizing:border-box}body{width:100%;padding-left:90px;padding-right:90px;font-family:Roboto, Arial, sans-serif;background:#FBF5F4}ul,li{list-style:none;margin:0;padding:0}a{text-decoration:none}button{background:none;border:none;cursor:pointer}
+
+.main-header{width:100%;display:flex;justify-content:space-between;padding-top:60px;padding-bottom:60px;font-size:18px;color:black}.header_title{position:relative}.header_title::before{position:absolute;content:"";left:-12px;top:7px;width:5px;height:5px;border-radius:50%;background:#ff6000}
 
 /*# sourceMappingURL=main.css.map */
