@@ -21,7 +21,6 @@ nextPage.addEventListener('click', ()=>{
 });
 
 
-
 fetch('section1.html')
     .then((response)=>{
         if (response.status === 404){
@@ -30,5 +29,20 @@ fetch('section1.html')
         return response.text()
     })
     .then((text)=>{
-        container.innerHTML = text;
+        container.innerHTML = text; // закидываем на страницу подгруженный контент
+
+        let mainHeader = document.querySelector('.main-header'); //header
+        let mainHeaderHeight = mainHeader.clientHeight; //высота header
+
+        let mainFooter = document.querySelector('.main-footer'); //footer
+        let mainFooterHeight = mainFooter.clientHeight; //высота footer
+
+        let section = document.querySelector('.section'); //секция с подгружаемым контентом
+        let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
+
+        console.log(mainHeaderHeight);
+        console.log(mainFooterHeight);
+
+        section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы -header и footer)
     });
+//----------------------------------------------
