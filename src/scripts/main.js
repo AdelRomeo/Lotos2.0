@@ -21,6 +21,36 @@ nextPage.addEventListener('click', ()=>{
 });
 
 
+let obj = {
+    fn1 : function() {
+        let mainHeader = document.querySelector('.main-header'); //header
+        let mainHeaderHeight = mainHeader.clientHeight; //высота header
+
+        let mainFooter = document.querySelector('.main-footer'); //footer
+        let mainFooterHeight = mainFooter.clientHeight; //высота footer
+
+        let section = document.querySelector('.section'); //секция с подгружаемым контентом
+        let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
+
+        return section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы
+        // -header и footer)
+    }
+};
+
+function maxHeightSection(){ // универсальная функция которая возвращает высоты для section
+    let mainHeader = document.querySelector('.main-header'); //header
+    let mainHeaderHeight = mainHeader.clientHeight; //высота header
+
+    let mainFooter = document.querySelector('.main-footer'); //footer
+    let mainFooterHeight = mainFooter.clientHeight; //высота footer
+
+    let section = document.querySelector('.section'); //секция с подгружаемым контентом
+    let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
+
+    return section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы
+    // -header и footer)
+}
+
 fetch('section1.html')
     .then((response)=>{
         if (response.status === 404){
@@ -31,18 +61,11 @@ fetch('section1.html')
     .then((text)=>{
         container.innerHTML = text; // закидываем на страницу подгруженный контент
 
-        let mainHeader = document.querySelector('.main-header'); //header
-        let mainHeaderHeight = mainHeader.clientHeight; //высота header
-
-        let mainFooter = document.querySelector('.main-footer'); //footer
-        let mainFooterHeight = mainFooter.clientHeight; //высота footer
-
         let section = document.querySelector('.section'); //секция с подгружаемым контентом
-        let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
+        section.style.maxHeight = maxHeightSection();
 
-        console.log(mainHeaderHeight);
-        console.log(mainFooterHeight);
-
-        section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы -header и footer)
+        window.addEventListener('resize', ()=>{ // resize - изменение размера окна
+            section.style.maxHeight = maxHeightSection();
+        });
     });
 //----------------------------------------------
