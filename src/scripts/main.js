@@ -23,7 +23,7 @@ nextPage.addEventListener('click', ()=>{
 
             let script = document.createElement('script'); //создаем элемент скрипт
             script.src = "src/scripts/section2.js"; // путь до нужного скрипта
-            document.body.append(script); // добавляем скрипт в боди
+            section.appendChild(script); // добавляем скрипт в секцию
         });
 });
 
