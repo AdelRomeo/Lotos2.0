@@ -15,15 +15,18 @@ nextPage.addEventListener('click', ()=>{
         })
         .then((text)=>{
             container.innerHTML = text;
-            pageNumb = pageNumb + 1; // увелечение счетчика для страницы
-            page = 'section' + pageNumb + '.html'; // изменение страницы
 
             let section = document.querySelector('.section'); //секция с подгружаемым контентом
             section.style.maxHeight = maxHeightSection(); //начальный размер страницы
 
-            let script = document.createElement('script'); //создаем элемент скрипт
-            script.src = "src/scripts/section2.js"; // путь до нужного скрипта
-            section.appendChild(script); // добавляем скрипт в секцию
+            if (page === 'section2.html'){
+                let script = document.createElement('script'); //создаем элемент скрипт
+                script.src = "src/scripts/section2.js"; // путь до нужного скрипта
+                section.appendChild(script); // добавляем скрипт в секцию
+            }
+
+            pageNumb = pageNumb + 1; // увелечение счетчика для страницы
+            page = 'section' + pageNumb + '.html'; // изменение страницы
         });
 });
 
