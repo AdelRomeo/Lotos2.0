@@ -25,6 +25,12 @@ nextPage.addEventListener('click', ()=>{
                 section.appendChild(script); // добавляем скрипт в секцию
             }
 
+            if (page === 'section4.html'){
+                let script = document.createElement('script'); //создаем элемент скрипт
+                script.src = "src/scripts/section4.js"; // путь до нужного скрипта
+                section.appendChild(script); // добавляем скрипт в секцию
+            }
+
             pageNumb = pageNumb + 1; // увелечение счетчика для страницы
             page = 'section' + pageNumb + '.html'; // изменение страницы
         });
