@@ -1,55 +1,12 @@
 let container = document.querySelector('.main-container');
 let nextPage = document.querySelector('.next-page_btn');
 
-let pageNumb = 2; //счетчик для изменения страницы
+let pageNumb = 2; //счетчик для изменения страницы через нижнюю кнопку
 
 nextPage.addEventListener('click', ()=>{
-    let page = 'section' + pageNumb + '.html'; //страница которая подставляется в fetch
-
-    fetch(page)
-        .then((response)=>{
-            if (response.status === 404){
-                return Promise.reject();
-            }
-            return response.text()
-        })
-        .then((text)=>{
-            container.innerHTML = text;
-
-            let section = document.querySelector('.section'); //секция с подгружаемым контентом
-            section.style.maxHeight = maxHeightSection(); //начальный размер страницы
-
-            if (page === 'section2.html'){
-                let script = document.createElement('script'); //создаем элемент скрипт
-                script.src = "src/scripts/section2.js"; // путь до нужного скрипта
-                section.appendChild(script); // добавляем скрипт в секцию
-            }
-
-            if (page === 'section4.html'){
-                let script = document.createElement('script'); //создаем элемент скрипт
-                script.src = "src/scripts/section4.js"; // путь до нужного скрипта
-                section.appendChild(script); // добавляем скрипт в секцию
-            }
-
-            pageNumb = pageNumb + 1; // увелечение счетчика для страницы
-            page = 'section' + pageNumb + '.html'; // изменение страницы
-        });
+    fetchRequest(pageNumb);
 });
 
-
-function maxHeightSection(){ // универсальная функция которая возвращает высоты для section
-    let mainHeader = document.querySelector('.main-header'); //header
-    let mainHeaderHeight = mainHeader.clientHeight; //высота header
-
-    let mainFooter = document.querySelector('.main-footer'); //footer
-    let mainFooterHeight = mainFooter.clientHeight; //высота footer
-
-    let section = document.querySelector('.section'); //секция с подгружаемым контентом
-    let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
-
-    return section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы
-    // -header и footer)
-}
 
 fetch('section1.html')
     .then((response)=>{
@@ -84,37 +41,53 @@ let menuListItem = document.querySelectorAll('.main-nav_item'); //элемент
 
 for (let i=0; i<menuListItem.length; i++){ //перебираем все лишки
     menuListItem[i].addEventListener('click', ()=>{ //кликаем по лишке
-
-        let counter = i + 1; //увеличиваем i чтобы не было нуля
-        let page = 'section' + counter +'.html'; //составляем адрес страницы для подрузки
-
-        fetch(page)
-            .then((response)=>{
-                if (response.status === 404){
-                    return Promise.reject();
-                }
-                return response.text()
-            })
-            .then((text)=>{
-                container.innerHTML = text;
-
-                let section = document.querySelector('.section'); //секция с подгружаемым контентом
-                section.style.maxHeight = maxHeightSection(); //начальный размер страницы
-
-                if (page === 'section2.html'){
-                    let script = document.createElement('script'); //создаем элемент скрипт
-                    script.src = "src/scripts/section2.js"; // путь до нужного скрипта
-                    section.appendChild(script); // добавляем скрипт в секцию
-                }
-
-                if (page === 'section4.html'){
-                    let script = document.createElement('script'); //создаем элемент скрипт
-                    script.src = "src/scripts/section4.js"; // путь до нужного скрипта
-                    section.appendChild(script); // добавляем скрипт в секцию
-                }
-
-                pageNumb = counter+1; // изменение счетчика для страницы
-                page = 'section' + pageNumb + '.html'; // изменение страницы
-            });
+        let counter = i + 1; //увеличиваем i чтобы не было нуля и счетки для переключения страниц через верхнее меню
+        fetchRequest(counter);
     })
+}
+
+function maxHeightSection(){ // универсальная функция которая возвращает высоты для section
+    let mainHeader = document.querySelector('.main-header'); //header
+    let mainHeaderHeight = mainHeader.clientHeight; //высота header
+
+    let mainFooter = document.querySelector('.main-footer'); //footer
+    let mainFooterHeight = mainFooter.clientHeight; //высота footer
+
+    let section = document.querySelector('.section'); //секция с подгружаемым контентом
+    let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
+
+    return section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы
+    // -header и footer)
+}
+
+function fetchRequest(pageCount) { //универсальная функция для подгрузки секций через разные способы
+    let page = 'section' + pageCount +'.html'; //составляем адрес страницы для подрузки
+    fetch(page)
+        .then((response)=>{
+            if (response.status === 404){
+                return Promise.reject();
+            }
+            return response.text()
+        })
+        .then((text)=>{
+            container.innerHTML = text;
+
+            let section = document.querySelector('.section'); //секция с подгружаемым контентом
+            section.style.maxHeight = maxHeightSection(); //начальный размер страницы
+
+            if (page === 'section2.html'){
+                let script = document.createElement('script'); //создаем элемент скрипт
+                script.src = "src/scripts/section2.js"; // путь до нужного скрипта
+                section.appendChild(script); // добавляем скрипт в секцию
+            }
+
+            if (page === 'section4.html'){
+                let script = document.createElement('script'); //создаем элемент скрипт
+                script.src = "src/scripts/section4.js"; // путь до нужного скрипта
+                section.appendChild(script); // добавляем скрипт в секцию
+            }
+
+            pageNumb = pageCount + 1; // изменение счетчика для страницы
+            page = 'section' + pageNumb + '.html'; // изменение страницы
+        });
 }
