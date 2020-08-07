@@ -1,4 +1,4 @@
-(function antiDoubleVaraibles() {
+(function antiDoubleVariables() {
     let list2 = document.querySelector('.section4_list-trainer'); //список
     let listLi2 = document.querySelectorAll('.section4_list-trainer>li'); //li`шки
     let listMarker2 = document.querySelector('.section4_list-marker'); //'Yoga'
