@@ -8,7 +8,7 @@ nextPage.addEventListener('click', ()=>{
 });
 
 
-fetch('section6.html')
+fetch('section7.html')
     .then((response)=>{
         if (response.status === 404){
             return Promise.reject();
@@ -56,7 +56,7 @@ function maxHeightSection(){ // универсальная функция кот
     let section = document.querySelector('.section'); //секция с подгружаемым контентом
     let maxHeeight = document.documentElement.clientHeight; // высота всей страницы (body)
 
-    return section.style.maxHeight = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы
+    return section.style.height = maxHeeight - mainHeaderHeight - mainFooterHeight + 'px'; //задаем высоты секции (высота страницы
     // -header и footer)
 }
 
@@ -84,6 +84,12 @@ function fetchRequest(pageCount) { //универсальная функция �
             if (page === 'section4.html'){
                 let script = document.createElement('script'); //создаем элемент скрипт
                 script.src = "src/scripts/section4.js"; // путь до нужного скрипта
+                section.appendChild(script); // добавляем скрипт в секцию
+            }
+
+            if (page === 'section7.html'){
+                let script = document.createElement('script'); //создаем элемент скрипт
+                script.src = "src/scripts/section7.js"; // путь до нужного скрипта
                 section.appendChild(script); // добавляем скрипт в секцию
             }
 
