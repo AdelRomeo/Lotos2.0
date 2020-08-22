@@ -8,7 +8,7 @@ nextPage.addEventListener('click', ()=>{
 });
 
 
-fetch('section9.html')
+fetch('section1.html')
     .then((response)=>{
         if (response.status === 404){
             return Promise.reject();
@@ -29,10 +29,9 @@ fetch('section9.html')
 
 //-- открытие и подгрузка контента по кликами в верхнем меню
 let menu = document.querySelector('.header_menu'); //кнопка по которой кликают
+let menuList = document.querySelector('.main-nav_list'); //список меню
 
-menu.addEventListener('click', ()=>{ //клик пок нопке
-   let menuList = document.querySelector('.main-nav_list'); //список меню
-
+menu.addEventListener('click', ()=>{ //клик по кнопке
    menuList.classList.toggle('vision-menu'); //переключение списка видимости меню
    menu.classList.toggle('header_menu-affect'); //анимацию бурнера меню
 });
@@ -42,7 +41,7 @@ let menuListItem = document.querySelectorAll('.main-nav_item'); //элемент
 for (let i=0; i<menuListItem.length; i++){ //перебираем все лишки
     menuListItem[i].addEventListener('click', ()=>{ //кликаем по лишке
         let counter = i + 1; //увеличиваем i чтобы не было нуля и счетки для переключения страниц через верхнее меню
-        fetchRequest(counter);
+        fetchRequest(counter); //запускаем функцию подгрузки контента с  нужным счетчиком
     })
 }
 
@@ -90,6 +89,12 @@ function fetchRequest(pageCount) { //универсальная функция �
             if (page === 'section7.html'){
                 let script = document.createElement('script'); //создаем элемент скрипт
                 script.src = "src/scripts/section7.js"; // путь до нужного скрипта
+                section.appendChild(script); // добавляем скрипт в секцию
+            }
+
+            if (page === 'section9.html'){
+                let script = document.createElement('script'); //создаем элемент скрипт
+                script.src = "src/scripts/yandexMap.js"; // путь до нужного скрипта
                 section.appendChild(script); // добавляем скрипт в секцию
             }
 
