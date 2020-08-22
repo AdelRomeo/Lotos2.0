@@ -8,7 +8,7 @@ nextPage.addEventListener('click', ()=>{
 });
 
 
-fetch('section8.html')
+fetch('section9.html')
     .then((response)=>{
         if (response.status === 404){
             return Promise.reject();
