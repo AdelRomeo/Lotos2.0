@@ -19,10 +19,18 @@ fetch('section1.html')
         container.innerHTML = text; // закидываем на страницу подгруженный контент
 
         let section = document.querySelector('.section'); //секция с подгружаемым контентом
-        section.style.maxHeight = maxHeightSection(); //начальный размер страницы
+        if (section.clientWidth > 1200){
+            section.style.maxHeight = maxHeightSection(); //начальный размер страницы
+        }
 
         window.addEventListener('resize', ()=>{ // resize - изменение размера окна
-            section.style.maxHeight = maxHeightSection();
+            if (section.clientWidth > 1200){ // если ширина секции больше 1200px (desktop version)(ширина секции = ширина окна)
+                section.style.maxHeight = maxHeightSection();
+            } else { // если ширина секции меньше 1200px (mobile version)
+                section.style.maxHeight = 'max-content';
+                section.style.height = 'max-content';
+            }
+            console.log(section.clientWidth);
         });
     });
 //----------------------------------------------
