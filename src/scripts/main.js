@@ -30,7 +30,6 @@ fetch('section1.html')
                 section.style.maxHeight = 'max-content';
                 section.style.height = 'max-content';
             }
-            console.log(section.clientWidth);
         });
     });
 //----------------------------------------------
@@ -81,6 +80,12 @@ function fetchRequest(pageCount) { //универсальная функция �
 
             let section = document.querySelector('.section'); //секция с подгружаемым контентом
             section.style.maxHeight = maxHeightSection(); //начальный размер страницы
+            let counterFirst= document.querySelector('.counter>span:first-child');//первая цифра счетчика на страница section
+            let counterLast = document.querySelector('.counter>span:last-child');//последняя цифра счетчика на страница section
+            let counterFirstFooter= document.querySelector('.main-footer_counter>span:first-child');//первая цифра счетчика на страница section
+            let counterLastFooter = document.querySelector('.main-footer_counter>span:last-child');//последняя цифра счетчика на страница section
+            counterFirstFooter.innerText = counterFirst.innerText;
+            counterLastFooter.innerText = counterLast.innerText;
 
             if (page === 'section2.html'){
                 let script = document.createElement('script'); //создаем элемент скрипт
@@ -110,3 +115,5 @@ function fetchRequest(pageCount) { //универсальная функция �
             page = 'section' + pageNumb + '.html'; // изменение страницы
         });
 }
+//-----------------------------------------
+
