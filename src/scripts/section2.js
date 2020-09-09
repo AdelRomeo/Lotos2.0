@@ -11,4 +11,20 @@
             }
         }
     });
+
+    list.addEventListener('click', (e)=>{ //вешаем обработчик насписок при клике
+        let section2Container = document.querySelectorAll('.section2_container');//список подгружаемых элементов
+
+        for (let i=0; i<listLi.length; i++){ //перебираем все li`шки
+            if (e.target === listLi[i]){ //если элемент на который навели мышь это li`шка
+                for (let j = 0; j<section2Container.length; j++){ // перебираем все элементы списка с подгружаемым контентом
+                    section2Container[j].style.display = 'none'; // display = 'none' для ВСЕХ элементво
+                    section2Container[i].style.display = 'block'; // display = 'block' для элемента номер которого в массиве равен
+                    // номеру лишки на которую кликнули.
+                }
+            }
+        }
+    })
+
 })();
+
