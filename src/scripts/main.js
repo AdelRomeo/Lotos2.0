@@ -106,8 +106,12 @@ function fetchRequest(pageCount) { //универсальная функция �
             }
 
             if (page === 'section9.html'){
+                let scriptMap = document.createElement('script'); //создаем элемент скрипт
+                scriptMap.src = "src/scripts/yandexMap.js"; // путь до нужного скрипта
+                section.appendChild(scriptMap); // добавляем скрипт в секцию
+
                 let script = document.createElement('script'); //создаем элемент скрипт
-                script.src = "src/scripts/yandexMap.js"; // путь до нужного скрипта
+                script.src = "src/scripts/section9.js"; // путь до нужного скрипта
                 section.appendChild(script); // добавляем скрипт в секцию
             }
 
